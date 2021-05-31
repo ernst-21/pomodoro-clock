@@ -1,0 +1,52 @@
+@import "~antd/dist/antd.css";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.pomo-container {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+}
+
+.clock-btn-container {
+  display: flex;
+  justify-content: space-around;
+  place-items: center;
+  width: 60%;
+  margin-top: 1.5rem;
+}
+
+.counters-container {
+  display: flex;
+  width: 80%;
+  height: 45%;
+  justify-content: space-evenly;
+  place-items: center;
+}
+
+.clock-container {
+  display: grid;
+  width: 60%;
+  justify-content: center;
+  place-items: center;
+  height: 90%;
+  margin-top: 1rem;
+}
+
+.break-container, .session-container {
+  display: flex;
+  place-items: center;
+  justify-content: space-around;
+}
