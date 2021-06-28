@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import BreakCounter from './components/BreakCounter';
-import SessionCounter from './components/SessionCounter';
+import SessionBreakSetter from './components/SessionBreakSetter';
 import Clock from './components/Clock';
+import { Switch } from 'antd';
 
 let path = './assets/default.mp3';
 
@@ -15,11 +15,15 @@ function App() {
   const [isCounting, setIsCounting] = useState(false);
   const [counter, setCounter] = useState(600);
   const [percent, setPercent] = useState(100);
+  const [whiteTheme, setWhiteTheme] = useState(true);
   const audio = useMemo(
     () =>
       new Audio('https://onlineclock.net/audio/options/default.mp3' || path),
-    []
-  );
+    []);
+
+  function onChange() {
+    setWhiteTheme(!whiteTheme);
+  }
 
   useEffect(() => {
     let intervalCount;
@@ -52,7 +56,6 @@ function App() {
       setCounter(sessionCounter * 60);
       setIsSession(true);
     }
-
     return () => clearInterval(intervalCount);
   }, [
     isCounting,
@@ -114,7 +117,10 @@ function App() {
   };
 
   return (
-    <div className="pomo-container">
+    <div
+      className="pomo-container"
+      style={{ backgroundColor: whiteTheme ? '#fff' : '#242424' }}
+    >
       <Clock
         reset={handleReset}
         running={isCounting}
@@ -122,19 +128,27 @@ function App() {
         onPause={() => setIsCounting(false)}
         counterType={isBreak ? 'Break' : 'Session'}
         percent={percent}
+        theme={whiteTheme}
       >
         {minutes < 10 ? '0' + minutes : minutes} : {seconds < 10 ? '0' + seconds : seconds}
       </Clock>
+      <Switch checkedChildren='black' unCheckedChildren="white" onChange={onChange} defaultChecked />
       <div className="counters-container">
-        <BreakCounter increase={handleIncrease} decrease={handleDecrease}>
+        <SessionBreakSetter
+          increase={handleIncrease}
+          decrease={handleDecrease}
+          theme={whiteTheme}
+          child='Break'>
           {breakCounter}
-        </BreakCounter>
-        <SessionCounter
+        </SessionBreakSetter>
+        <SessionBreakSetter
           increase={handleSessionIncrease}
           decrease={handleSessionDecrease}
+          theme={whiteTheme}
+          child='Session'
         >
           {sessionCounter}
-        </SessionCounter>
+        </SessionBreakSetter>
       </div>
     </div>
   );

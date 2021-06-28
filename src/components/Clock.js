@@ -5,15 +5,18 @@ import {
   ReloadOutlined,
   PlayCircleOutlined
 } from '@ant-design/icons';
+import { themify } from './SessionBreakSetter';
 
 const { Title } = Typography;
 
 const Clock = (props) => {
   return (
     <div className="clock-container">
-      <div style={{textAlign: 'center', display: 'grid'}}>
-        <Title sytle={{ fontSize: '3rem' }}>Pomodoro Clock</Title>
-        <Title sytle={{ fontSize: '2rem' }}>{props.counterType}</Title>
+      <div style={{ textAlign: 'center', display: 'grid' }}>
+        <Title style={props.theme === true ? { fontSize: '3rem' } : { fontSize: '3rem', color: '#fff' }}>
+          Pomodoro Clock
+        </Title>
+        <Title style={themify(props.theme)}>{props.counterType}</Title>
       </div>
       <Progress
         type="circle"
@@ -21,20 +24,23 @@ const Clock = (props) => {
         width={220}
         strokeWidth={2}
         strokeColor={{
-          '100%': '#87d068',
-          '5%': '#800303'
+          '100%': '#790df3',
+          '50%': '#790df3',
+          '10%': '#fc3e03'
         }}
         format={() => (
-          <Title style={{ fontSize: '3rem' }}>{props.children}</Title>
+          <Title style={props.theme === true ? { fontSize: '3rem' } : {
+            fontSize: '3rem',
+            color: '#fff'
+          }}>{props.children}</Title>
         )}
       />
-
       <div className="clock-btn-container">
         {props.running ? (
           <Tooltip title="Pause">
             <span>
               <PauseCircleOutlined
-                style={{ fontSize: '2rem' }}
+                style={themify(props.theme)}
                 onClick={props.onPause}
               />{' '}
             </span>
@@ -43,17 +49,16 @@ const Clock = (props) => {
           <Tooltip title="Play">
             <span>
               <PlayCircleOutlined
-                style={{ fontSize: '2rem' }}
+                style={themify(props.theme)}
                 onClick={props.onPlay}
               />
             </span>
           </Tooltip>
         )}
-
         <Tooltip title="Reset">
           <span>
             <ReloadOutlined
-              style={{ fontSize: '2rem' }}
+              style={themify(props.theme)}
               onClick={props.reset}
             />
           </span>
