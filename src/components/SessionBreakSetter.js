@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography } from 'antd';
 import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
@@ -9,6 +9,10 @@ export const themify = (color) => {
 };
 
 const SessionBreakSetter = (props) => {
+
+  useEffect(() => {
+    console.log('I am being rendered');
+  }, []);
 
   return (
     <div style={{ width: '20%', placeItems: 'center' }}>
@@ -30,4 +34,4 @@ const SessionBreakSetter = (props) => {
   );
 };
 
-export default SessionBreakSetter;
+export default (SessionBreakSetter);

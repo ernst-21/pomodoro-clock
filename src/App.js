@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import SessionBreakSetter from './components/SessionBreakSetter';
 import Clock from './components/Clock';
+import alarm from './assets/Audio/default.mp3';
 import { Switch } from 'antd';
-
-let path = './assets/default.mp3';
 
 function App() {
   const [breakCounter, setBreakCounter] = useState(3);
@@ -18,7 +17,7 @@ function App() {
   const [whiteTheme, setWhiteTheme] = useState(true);
   const audio = useMemo(
     () =>
-      new Audio('https://onlineclock.net/audio/options/default.mp3' || path),
+      new Audio(alarm),
     []);
 
   function onChange() {
