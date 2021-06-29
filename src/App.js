@@ -17,7 +17,7 @@ function App() {
   const [whiteTheme, setWhiteTheme] = useState(true);
   const audio = useMemo(
     () =>
-      new Audio( 'https://onlineclock.net/audio/options/default.mp3' ||alarm),
+      new Audio(alarm),
     []);
 
   function onChange() {
